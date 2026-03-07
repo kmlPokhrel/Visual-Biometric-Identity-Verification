@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block bodyblock %}
+
+<div class="relative py-12 lg:py-20 overflow-hidden">
+    <div class="absolute top-0 -left-10 w-96 h-96 bg-cyan-500/10 rounded-full mix-blend-screen filter blur-[120px] animate-pulse"></div>
+    <div class="absolute bottom-0 -right-10 w-96 h-96 bg-fuchsia-500/10 rounded-full mix-blend-screen filter blur-[120px] animate-pulse"></div>
+
+    <div class="relative grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div class="space-y-10">
+            <div>
+                <span class="inline-flex items-center px-4 py-1.5 mb-8 text-[10px] font-orbitron tracking-[0.3em] text-cyan-400 uppercase bg-cyan-400/5 rounded-full border border-cyan-400/20">
+                    <span class="w-2 h-2 bg-cyan-400 rounded-full mr-2 animate-pulse"></span>
+                    Next-Gen Biometrics
+                </span>
+                
+                <h1 class="text-6xl lg:text-8xl font-black leading-[0.9] tracking-tighter text-white">
+                    Visual <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-fuchsia-500">Identity</span> <br>Verification.
+                </h1>
+                
+                <p class="mt-8 text-lg text-slate-400 leading-relaxed max-w-xl font-light">
+                    A high-performance face recognition pipeline leveraging PCA dimensionality reduction and Support Vector Machines to classify identity and gender metrics with <span class="text-slate-200 font-medium">surgical precision</span>.
+                </p>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-5">
+                <a href="{{ url_for('views.genderapp') }}" class="group px-8 py-4 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg font-orbitron text-xs tracking-widest transition-all duration-300 flex items-center justify-center shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)]">
+                    Launch Identity App
+                    <svg class="w-4 h-4 ml-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+                </a>
+                <a href="{{ url_for('views.methodology') }}" class="px-8 py-4 bg-slate-900/50 hover:bg-slate-800 text-slate-300 hover:text-white rounded-lg font-orbitron text-xs tracking-widest transition-all border border-slate-800 flex items-center justify-center">
+                    View Methodology
+                </a>
+            </div>
+
+            <div class="pt-10 grid grid-cols-3 gap-10 border-t border-slate-900">
+                <div>
+                    <p class="text-3xl font-orbitron font-bold text-white">96<span class="text-cyan-400 text-xl">%</span></p>
+                    <p class="text-[9px] text-slate-500 uppercase tracking-[0.2em] mt-2 font-bold">Accuracy</p>
+                </div>
+                <div>
+                    <p class="text-3xl font-orbitron font-bold text-white">0.4<span class="text-fuchsia-400 text-xl">s</span></p>
+                    <p class="text-[9px] text-slate-500 uppercase tracking-[0.2em] mt-2 font-bold">Inference</p>
+                </div>
+                <div>
+                    <p class="text-3xl font-orbitron font-bold text-white">PCA</p>
+                    <p class="text-[9px] text-slate-500 uppercase tracking-[0.2em] mt-2 font-bold">Engine</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="relative group">
+            <div class="absolute -inset-4 bg-gradient-to-r from-cyan-500 to-fuchsia-500 rounded-[2rem] blur-2xl opacity-10 group-hover:opacity-20 transition duration-1000"></div>
+            
+            <div class="relative glass rounded-[2rem] p-3 border-slate-800/50">
+                <div class="relative overflow-hidden rounded-2xl">
+                    <img src="{{ url_for('static', filename='logo.png') }}" alt="Biometric System" class="w-full aspect-square object-cover opacity-50 group-hover:opacity-80 transition-all duration-700 grayscale group-hover:grayscale-0 scale-110 group-hover:scale-100">
+                    
+                    <div class="absolute top-6 left-6 flex items-center space-x-2 bg-slate-950/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-cyan-500/30">
+                        <div class="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-ping"></div>
+                        <span class="text-[8px] font-orbitron text-cyan-400 tracking-tighter uppercase font-bold text-white">Neural Engine Active</span>
+                    </div>
+
+                    <div class="absolute top-0 left-0 w-full h-[1px] bg-fuchsia-500 shadow-[0_0_15px_#f5d0fe] animate-[scan_4s_ease-in-out_infinite]"></div>
+                </div>
+            </div>
+
+            <div class="absolute -bottom-10 -right-10 w-40 h-40 border border-slate-800 rounded-full opacity-20 animate-[spin_20s_linear_infinite]"></div>
+        </div>
+    </div>
+
+    <div class="mt-40 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="glass p-10 rounded-2xl border-t-2 border-cyan-500/20 hover:border-cyan-500/50 transition-all group">
+            <div class="w-12 h-12 bg-cyan-500/10 rounded-lg flex items-center justify-center mb-8 group-hover:bg-cyan-500/20 transition-colors">
+                <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
+            </div>
+            <h3 class="text-lg font-orbitron text-white mb-4 tracking-tight">Eigenface Extraction</h3>
+            <p class="text-slate-400 text-sm leading-relaxed font-light">Utilizing PCA to project high-dimensional pixel data into a latent subspace of significant facial eigenvectors.</p>
+        </div>
+        
+        <div class="glass p-10 rounded-2xl border-t-2 border-fuchsia-500/20 hover:border-fuchsia-500/50 transition-all group">
+            <div class="w-12 h-12 bg-fuchsia-500/10 rounded-lg flex items-center justify-center mb-8 group-hover:bg-fuchsia-500/20 transition-colors">
+                <svg class="w-6 h-6 text-fuchsia-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+            </div>
+            <h3 class="text-lg font-orbitron text-white mb-4 tracking-tight">SVM Core</h3>
+            <p class="text-slate-400 text-sm leading-relaxed font-light">Support Vector Machines with RBF kernels provide a robust decision boundary for high-confidence identity classification.</p>
+        </div>
+
+        <div class="glass p-10 rounded-2xl border-t-2 border-cyan-500/20 hover:border-cyan-500/50 transition-all group">
+            <div class="w-12 h-12 bg-cyan-500/10 rounded-lg flex items-center justify-center mb-8 group-hover:bg-cyan-500/20 transition-colors">
+                <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+            </div>
+            <h3 class="text-lg font-orbitron text-white mb-4 tracking-tight">Vision Pipeline</h3>
+            <p class="text-slate-400 text-sm leading-relaxed font-light">End-to-end computer vision using OpenCV for real-time face isolation and ROI normalization.</p>
+        </div>
+    </div>
+</div>
+
+<style>
+    @keyframes scan {
+        0%, 100% { transform: translateY(0); opacity: 0; }
+        50% { transform: translateY(400px); opacity: 1; }
+    }
+</style>
+
+{% endblock %}

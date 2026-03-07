@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vision Analytics | Biometric ID</title>
+    
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { background-color: #020617; color: white; font-family: 'Inter', sans-serif; }
+        .font-orbitron { font-family: 'Orbitron', sans-serif; }
+        .glass { background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); }
+        
+        /* NEON TEXT GLOW */
+        .neon-glow-text {
+            color: #22d3ee;
+            text-shadow: 0 0 5px rgba(34, 211, 238, 0.5);
+            animation: flicker 2s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+            20%, 24%, 55% { opacity: 0.7; }
+        }
+
+        /* SPINNER SCAN ANIMATION */
+        @keyframes scan {
+            0%, 100% { transform: translateY(0px); opacity: 0.3; }
+            50% { transform: translateY(160px); opacity: 1; }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <div id="loading-overlay" class="hidden fixed inset-0 z-[100] flex flex-col items-center justify-center bg-slate-950/95 backdrop-blur-xl">
+        <div class="relative w-48 h-48 mb-8">
+            <div class="absolute inset-0 border-2 border-cyan-500/20 rounded-full animate-[spin_4s_linear_infinite]"></div>
+            <div class="absolute inset-0 border-t-2 border-cyan-400 rounded-full animate-[spin_1.5s_linear_infinite]"></div>
+            <div class="absolute inset-8 flex items-center justify-center animate-pulse">
+                <img src="{{ url_for('static', filename='favicon.png') }}" class="w-full h-full opacity-80 object-contain">
+            </div>
+            <div class="absolute top-0 left-0 w-full h-[2px] bg-fuchsia-500 shadow-[0_0_15px_#d946ef] animate-[scan_2s_ease-in-out_infinite]"></div>
+        </div>
+        <h2 class="font-orbitron text-cyan-400 tracking-[0.2em] text-lg animate-pulse uppercase">Syncing Biometric Profile</h2>
+        <p class="text-slate-500 font-mono text-xs mt-2 uppercase">Status: <span id="sync-percent" class="text-fuchsia-400">0</span>% Identity Mapping</p>
+    </div>
+
+    <nav class="border-b border-slate-800 bg-slate-950/50 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="{{ url_for('views.index') }}" class="flex items-center space-x-3 group">
+                <div class="relative w-10 h-10 overflow-hidden">
+                    <img src="{{ url_for('static', filename='logo.png') }}" 
+                         alt="Logo" 
+                         class="w-full h-full object-contain mix-blend-screen brightness-150 transition-all group-hover:scale-110">
+                </div>
+                <span class="font-orbitron font-bold text-lg tracking-[0.2em] neon-glow-text uppercase">
+                    Vision<span class="text-white opacity-90">Analytics</span>
+                </span>
+            </a>
+            
+<div class="flex items-center space-x-8 text-[10px] font-orbitron tracking-tighter uppercase">
+    <a href="{{ url_for('views.index') }}" class="text-slate-400 hover:text-cyan-400 transition">Dashboard</a>
+    
+    <a href="{{ url_for('views.methodology') }}" class="text-slate-400 hover:text-cyan-400 transition">Methodology</a>
+    
+    <a href="{{ url_for('views.genderapp') }}" class="px-4 py-2 border border-cyan-500 text-cyan-400 rounded-sm hover:bg-cyan-500/10 transition">Launch App</a>
+</div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-6 py-8">
+        {% block bodyblock %}{% endblock %}
+    </main>
+
+    <script>
+        function showLoading() {
+            const overlay = document.getElementById('loading-overlay');
+            overlay.classList.remove('hidden');
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.floor(Math.random() * 8) + 1;
+                if (progress >= 99) {
+                    document.getElementById('sync-percent').innerText = "99";
+                    clearInterval(interval);
+                } else {
+                    document.getElementById('sync-percent').innerText = progress;
+                }
+            }, 150);
+        }
+    </script>
+</body>
+</html>

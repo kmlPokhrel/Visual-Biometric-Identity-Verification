@@ -38,14 +38,19 @@ Instead of focusing solely on detection, the project demonstrates a **complete v
 
 INPUT IMAGE
 ⬇
+
 Face Detection (Haar Cascade)
 ⬇
+
 Image Preprocessing
 ⬇
+
 Eigenface Feature Extraction (PCA)
 ⬇
+
 Support Vector Machine Classification
 ⬇
+
 Biometric Attribute Output
 
 </p>

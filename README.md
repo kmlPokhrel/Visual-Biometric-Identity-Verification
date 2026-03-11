@@ -69,7 +69,7 @@ Biometric Attribute Output
 ### Neural Pipeline in Action
 
 <p align="center">
-  <a href="static/images/demo.mp4">
+  <a href="static/demo.mp4">
     <img src="static/demo_thumbnail.png" width="650">
   </a>
 </p>

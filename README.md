@@ -42,15 +42,15 @@ The goal of this project is to demonstrate a **complete computer vision pipeline
 <p align="center">
 
 INPUT IMAGE  
-⬇  
+    ⬇  
 Face Detection (Haar Cascade)  
-⬇  
+    ⬇  
 Image Preprocessing  
-⬇  
+    ⬇  
 Eigenface Feature Extraction (PCA)  
-⬇  
+    ⬇  
 Support Vector Machine Classification  
-⬇  
+    ⬇  
 Prediction Output  
 
 </p>
@@ -92,7 +92,11 @@ Prediction Output
 # 🧬 Core System Architecture
 
 The system processes facial images through a **four-stage analysis pipeline**.
+## System Architecture
 
+<p align="center">
+<img src="static/architecture.png" width="800">
+</p>
 ---
 
 ## 1️⃣ Face Detection

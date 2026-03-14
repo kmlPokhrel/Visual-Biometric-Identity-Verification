@@ -3,10 +3,10 @@
 <p align="center">
 
 <h1 align="center">🛡️ Visual Biometric Identity Verification</h1>
-<h3 align="center">Neural Computer Vision Pipeline for Real-Time Attribute Recognition</h3>
+<h3 align="center">Computer Vision Pipeline for Real-Time Facial Attribute Recognition</h3>
 
 <p align="center">
-A high-performance computer vision system that transforms raw pixel data into actionable biometric intelligence.
+A computer vision system that converts raw facial image data into biometric predictions using classical machine learning techniques.
 </p>
 
 <p align="center">
@@ -24,34 +24,34 @@ A high-performance computer vision system that transforms raw pixel data into ac
 
 # 🚀 System Overview
 
-**Visual Biometric Identity Verification** is a full-stack computer vision application designed to analyze facial features and generate biometric intelligence through a structured neural pipeline.
+**Visual Biometric Identity Verification** is a full-stack computer vision project that analyzes facial images and extracts biometric features through a structured machine learning pipeline.
 
-The system processes images in real time and performs **feature extraction, dimensionality reduction, and classification** through a modular architecture built with modern machine learning techniques.
+The system processes images in real time and performs:
 
-Instead of focusing solely on detection, the project demonstrates a **complete vision pipeline** from raw image acquisition to intelligent classification.
+• Face detection  
+• Image preprocessing  
+• Feature extraction using PCA (Eigenfaces)  
+• Classification using Support Vector Machine  
+
+The goal of this project is to demonstrate a **complete computer vision pipeline**, from raw image acquisition to final prediction output.
 
 ---
 
-# 🧠 Neural Vision Pipeline
+# 🧠 Vision Processing Pipeline
 
 <p align="center">
 
-INPUT IMAGE
-⬇
-
-Face Detection (Haar Cascade)
-⬇
-
-Image Preprocessing
-⬇
-
-Eigenface Feature Extraction (PCA)
-⬇
-
-Support Vector Machine Classification
-⬇
-
-Biometric Attribute Output
+INPUT IMAGE  
+⬇  
+Face Detection (Haar Cascade)  
+⬇  
+Image Preprocessing  
+⬇  
+Eigenface Feature Extraction (PCA)  
+⬇  
+Support Vector Machine Classification  
+⬇  
+Prediction Output  
 
 </p>
 
@@ -66,7 +66,7 @@ Biometric Attribute Output
 </p>
 
 <p align="center">
-<i>Vision Analytics identity representing the fusion of neural computation and biometric intelligence.</i>
+<i>Vision Analytics interface used for biometric prediction.</i>
 </p>
 
 ---
@@ -84,69 +84,85 @@ Biometric Attribute Output
 </p>
 
 <p align="center">
-<i>Real-time facial ROI detection followed by Eigen-projection and SVM classification.</i>
+<i>Real-time facial ROI detection followed by PCA projection and SVM classification.</i>
 </p>
 
 ---
 
 # 🧬 Core System Architecture
 
-The engine processes images through a **four-stage biometric analysis pipeline**.
+The system processes facial images through a **four-stage analysis pipeline**.
 
 ---
 
-## 1️⃣ Region of Interest Detection
+## 1️⃣ Face Detection
 
-• Implemented using **Haar Cascade Classifiers**
-• Detects facial structures from raw input frames
-• Extracts the **Region of Interest (ROI)**
+• Implemented using **Haar Cascade Classifiers**  
+• Detects facial regions in input frames  
+• Extracts the **Region of Interest (ROI)** for analysis  
 
 ---
 
 ## 2️⃣ Image Preprocessing
 
-• Converts RGB frames into **grayscale space**
-• Normalizes image size to **100 × 100 resolution**
-• Reduces noise and dimensional overhead
+• Converts RGB images into **grayscale format**  
+• Resizes images to **100 × 100 resolution**  
+• Normalizes input data to improve model consistency  
 
 ---
 
-## 3️⃣ Eigenface Projection
+## 3️⃣ Feature Extraction (Eigenfaces)
 
-• Uses **Principal Component Analysis (PCA)**
-• Maps facial structures into **Eigenface space**
-• Extracts dominant biometric variance patterns
+• Uses **Principal Component Analysis (PCA)**  
+• Reduces image dimensionality  
+• Projects facial features into **Eigenface space**  
+
+This step captures the most important facial variance patterns.
 
 ---
 
-## 4️⃣ SVM Classification
+## 4️⃣ Classification
 
-• Feature vectors are passed to a **Support Vector Machine**
-• Predicts classification labels with statistical confidence
-• Enables real-time inference
+• Feature vectors are passed to a **Support Vector Machine (SVM)**  
+• The trained classifier predicts biometric attributes  
+• Inference is performed in **near real time**
+
+---
+
+# 📚 Dataset
+
+The model was trained using a dataset containing facial images captured under different lighting conditions and orientations.
+
+Before training, images were:
+
+• Converted to grayscale  
+• Resized to 100 × 100 pixels  
+• Flattened into feature vectors  
+
+PCA was then applied to extract the most significant facial components before classification.
 
 ---
 
 # ⚙️ Technology Stack
 
-| Layer              | Technology             |
-| ------------------ | ---------------------- |
-| Computer Vision    | OpenCV                 |
-| Feature Extraction | PCA (Eigenfaces)       |
-| Classification     | Support Vector Machine |
-| Backend            | Flask                  |
-| Deployment         | Railway                |
-| Runtime            | Python 3.9             |
+| Layer | Technology |
+|------|------|
+| Computer Vision | OpenCV |
+| Feature Extraction | PCA (Eigenfaces) |
+| Classification | Support Vector Machine |
+| Backend | Flask |
+| Deployment | Railway |
+| Runtime | Python 3.9 |
 
 ---
 
 # 📊 Model Performance
 
-| Metric                | Score                 | Description                                |
-| --------------------- | --------------------- | ------------------------------------------ |
-| Accuracy              | 85-92%                | Reliable prediction under varying lighting |
-| Inference Time        | <120 ms               | Near real-time response                    |
-| Dimensional Reduction | 95% variance retained | PCA compression efficiency                 |
+| Metric | Score | Description |
+|------|------|------|
+| Accuracy | 85–92% | Prediction accuracy across test samples |
+| Inference Time | <120 ms | Near real-time prediction |
+| Dimensional Reduction | 95% variance retained | PCA compression efficiency |
 
 ---
 
@@ -221,38 +237,34 @@ python main.py
 
 # 🌐 Deployment Architecture
 
-The application is optimized for **cloud-native deployment**.
+The application is deployed using **Railway cloud infrastructure**.
 
-• Production server managed with **Gunicorn**
-• OpenCV optimized using **opencv-python-headless**
-• Hosted using **Railway Cloud Infrastructure**
+• Flask application served using **Gunicorn**  
+• Optimized OpenCV build using **opencv-python-headless**  
+• Environment versions locked for reproducibility  
 
-Environment versions are locked to ensure reproducible inference:
+Environment versions:
 
-Python 3.9.18
+Python 3.9.18  
 scikit-learn 0.24.2
 
 ---
 
-# 🔮 Future Roadmap
+# 🔮 Future Improvements
 
-The next phase expands the biometric intelligence module.
+Planned improvements for the system include:
 
-### Identity Locking
-
-Mapping Eigenface signatures to registered user profiles.
+### Identity Recognition
+Link Eigenface signatures to registered user profiles.
 
 ### Liveness Detection
+Detect spoofing attempts such as printed photos.
 
-Preventing spoofing through anti-photo detection.
+### Emotion Analysis
+Integrate facial emotion recognition models.
 
-### Emotion Analytics
-
-Integrating facial emotion recognition into biometric reports.
-
-### Multi-User Recognition
-
-Expanding system to handle large identity datasets.
+### Multi-Person Recognition
+Expand system to support larger identity datasets.
 
 ---
 
@@ -260,7 +272,7 @@ Expanding system to handle large identity datasets.
 
 **Kamal Pokhrel**
 
-Computer Vision • Biometric Systems • ML Engineering
+Computer Vision • Machine Learning • ML Engineering
 
 ---
 
@@ -268,12 +280,12 @@ Computer Vision • Biometric Systems • ML Engineering
 
 If you found this project useful:
 
-⭐ Star the repository
-🍴 Fork the project
+⭐ Star the repository  
+🍴 Fork the project  
 📢 Share with the community
 
 ---
 
 <p align="center">
-Built with precision using a neural computer vision framework.
+Built using classical computer vision and machine learning techniques.
 </p>

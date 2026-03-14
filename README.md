@@ -95,7 +95,7 @@ The system processes facial images through a **four-stage analysis pipeline**.
 ## System Architecture
 
 <p align="center">
-<img src="static/architecture.png" width="800">
+  <img src="./static/architecture.png" width="800">
 </p>
 ---
 

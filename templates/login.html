@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block bodyblock %}
+<div class="max-w-md mx-auto mt-12 animate-in fade-in zoom-in-95 duration-500">
+    <div class="glass p-10 rounded-2xl border-t-2 border-cyan-500 shadow-2xl">
+        
+        <div class="text-center mb-8">
+            <h2 class="font-orbitron text-cyan-400 text-xl font-bold uppercase tracking-[0.2em]">
+                System Access
+            </h2>
+            <p class="text-[10px] text-slate-500 font-mono mt-2 uppercase tracking-tighter">
+                Identity Verification Required // secure_gate_v1
+            </p>
+        </div>
+
+        <form method="POST" class="space-y-6">
+            <div>
+                <label class="block font-orbitron text-[10px] text-slate-500 uppercase mb-2">Username</label>
+                <input type="text" name="username" 
+                       class="w-full bg-slate-900/50 border border-slate-800 rounded-sm p-3 text-cyan-400 focus:border-cyan-500 outline-none transition-all" 
+                       required>
+            </div>
+            
+            <div>
+                <label class="block font-orbitron text-[10px] text-slate-500 uppercase mb-2">Access Key</label>
+                <input type="password" name="password" 
+                       class="w-full bg-slate-900/50 border border-slate-800 rounded-sm p-3 text-cyan-400 focus:border-cyan-500 outline-none transition-all" 
+                       required>
+            </div>
+
+            <button type="submit" onclick="showLoading()"
+                    class="w-full py-4 bg-transparent border border-cyan-500 text-cyan-400 font-orbitron text-xs tracking-[0.3em] hover:bg-cyan-500 hover:text-black transition-all uppercase mt-4">
+                Initialize Session
+            </button>
+        </form>
+        
+        <div class="mt-8 text-center">
+            <a href="/register" class="text-[10px] font-orbitron text-slate-600 hover:text-fuchsia-400 transition-colors uppercase tracking-widest">
+                New Operator? Request Credentials
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

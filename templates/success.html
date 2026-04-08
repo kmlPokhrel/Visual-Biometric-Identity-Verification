@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block bodyblock %}
+<div class="max-w-2xl mx-auto text-center animate-in zoom-in-95 duration-700">
+    <div class="glass p-12 rounded-3xl border-2 border-fuchsia-500 shadow-[0_0_30px_rgba(217,70,239,0.2)]">
+        
+        <div class="relative w-24 h-24 mx-auto mb-8">
+            <div class="absolute inset-0 border-4 border-fuchsia-500/20 rounded-full animate-ping"></div>
+            <div class="absolute inset-0 border-2 border-fuchsia-500 rounded-full flex items-center justify-center">
+                <svg class="w-12 h-12 text-fuchsia-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+            </div>
+        </div>
+
+        <h1 class="font-orbitron text-3xl font-bold neon-glow-text tracking-widest uppercase mb-4">
+            Transaction Verified
+        </h1>
+        
+        <div class="space-y-4 mb-10">
+            <p class="text-slate-400 font-mono text-xs uppercase tracking-tighter">
+                Operator ID: <span class="text-white">{{ current_user.id }}</span>
+            </p>
+            <div class="h-[1px] w-full bg-gradient-to-r from-transparent via-fuchsia-500/50 to-transparent"></div>
+            <p class="font-orbitron text-fuchsia-400 text-sm tracking-widest uppercase">
+                Elite Biometric Access Level: <span class="text-white">UNLOCKED</span>
+            </p>
+        </div>
+
+        <a href="/dashboard" class="inline-block px-10 py-4 bg-transparent border border-cyan-500 text-cyan-400 font-orbitron text-[10px] tracking-[0.4em] hover:bg-cyan-500 hover:text-black transition-all uppercase">
+            Initialize Elite Command Center >>
+        </a>
+    </div>
+</div>
+{% endblock %}

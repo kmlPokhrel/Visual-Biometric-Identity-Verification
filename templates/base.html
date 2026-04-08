@@ -43,36 +43,43 @@
             <div class="absolute inset-8 flex items-center justify-center animate-pulse">
                 <img src="{{ url_for('static', filename='favicon.png') }}" class="w-full h-full opacity-80 object-contain">
             </div>
-            <div class="absolute top-0 left-0 w-full h-[2px] bg-fuchsia-500 shadow-[0_0_15px_#d946ef] animate-[scan_2s_ease-in-out_infinite]"></div>
+            <div class="absolute top-0 left-0 w-full h-[2px] bg-fuchsia-500 shadow-[0_0_15_#d946ef] animate-[scan_2s_ease-in-out_infinite]"></div>
         </div>
         <h2 class="font-orbitron text-cyan-400 tracking-[0.2em] text-lg animate-pulse uppercase">Syncing Biometric Profile</h2>
         <p class="text-slate-500 font-mono text-xs mt-2 uppercase">Status: <span id="sync-percent" class="text-fuchsia-400">0</span>% Identity Mapping</p>
     </div>
 
     <nav class="border-b border-slate-800 bg-slate-950/50 backdrop-blur-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
-            <a href="{{ url_for('views.index') }}" class="flex items-center space-x-3 group">
+        <div class="max-w-7xl mx-auto px-8 py-5 flex justify-between items-center">
+            
+            <a href="/" class="flex items-center space-x-3 group">
                 <div class="relative w-10 h-10 overflow-hidden">
-                    <img src="{{ url_for('static', filename='logo.png') }}" 
-                         alt="Logo" 
-                         class="w-full h-full object-contain mix-blend-screen brightness-150 transition-all group-hover:scale-110">
+                    <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" class="w-full h-full object-contain mix-blend-screen brightness-150 transition-all group-hover:scale-110">
                 </div>
-                <span class="font-orbitron font-bold text-lg tracking-[0.2em] neon-glow-text uppercase">
-                    Vision<span class="text-white opacity-90">Analytics</span>
-                </span>
+                <span class="font-orbitron font-bold text-lg tracking-[0.1em] neon-glow-text uppercase">Vision<span class="text-white opacity-90">Analytics</span></span>
             </a>
             
-<div class="flex items-center space-x-8 text-[10px] font-orbitron tracking-tighter uppercase">
-    <a href="{{ url_for('views.index') }}" class="text-slate-400 hover:text-cyan-400 transition">Dashboard</a>
-    
-    <a href="{{ url_for('views.methodology') }}" class="text-slate-400 hover:text-cyan-400 transition">Methodology</a>
-    
-    <a href="{{ url_for('views.genderapp') }}" class="px-4 py-2 border border-cyan-500 text-cyan-400 rounded-sm hover:bg-cyan-500/10 transition">Launch App</a>
-</div>
+            <div class="flex items-center space-x-12 text-[10px] font-orbitron tracking-[0.15em] uppercase">
+                <a href="{{ url_for('dashboard') }}" class="text-slate-400 hover:text-cyan-400 transition">Dashboard</a>
+                
+                <a href="{{ url_for('views.methodology') }}" class="text-slate-400 hover:text-cyan-400 transition">Methodology</a>
+                
+                <a href="{{ url_for('views.genderapp') }}" class="px-6 py-2 border border-cyan-500 text-cyan-400 rounded-sm hover:bg-cyan-500/10 transition shadow-[0_0_10px_rgba(34,211,238,0.2)]">Launch App</a>
+            </div>
         </div>
     </nav>
 
-    <main class="max-w-7xl mx-auto px-6 py-8">
+    <main class="max-w-7xl mx-auto px-8 py-10">
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+              <div class="glass border-l-4 border-fuchsia-500 p-4 mb-8">
+                <p class="font-orbitron text-[10px] text-fuchsia-400 tracking-widest uppercase">System Alert: {{ message }}</p>
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+        
         {% block bodyblock %}{% endblock %}
     </main>
 

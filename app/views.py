@@ -1,49 +1,62 @@
 import os
 import cv2
-from app.face_recognition import faceRecognitionPipeline
+import numpy as np
 from flask import render_template, request, Blueprint
+from flask_login import login_required, current_user
+from models import db, Identity 
 import matplotlib.image as matimg
+from app.face_recognition import faceRecognitionPipeline
 
-# Create the Blueprint
 views_bp = Blueprint('views', __name__)
 
 UPLOAD_FOLDER = 'static/upload'
 
-@views_bp.route('/')
-def index():
-    return render_template('index.html')
+# --- NO INDEX FUNCTION HERE ---
 
 @views_bp.route('/methodology')
 def methodology():
     return render_template('app.html')
 
 @views_bp.route('/gender', methods=['GET', 'POST'])
+@login_required 
 def genderapp():
     if request.method == 'POST':
         f = request.files['image_name']
-        filename = f.filename
-        path = os.path.join(UPLOAD_FOLDER, filename)
+        path = os.path.join(UPLOAD_FOLDER, f.filename)
         f.save(path) 
         
-        # Process image and save prediction
         pred_image, predictions = faceRecognitionPipeline(path)
-        pred_filename = 'prediction_image.jpg'
-        cv2.imwrite(f'./static/predict/{pred_filename}', pred_image)
+        cv2.imwrite('./static/predict/prediction_image.jpg', pred_image)
         
         report = []
+        saved_identities = Identity.query.filter_by(user_id=current_user.id).all()
+
         for i, obj in enumerate(predictions):
-            gray_image = obj['roi'] 
-            eigen_image = obj['eig_img'].reshape(100, 100) 
+            live_vector = obj['eig_img'].flatten()
+            identity_name = "Unrecognized"
+            
+            if current_user.is_premium and saved_identities:
+                min_dist = 1.5 
+                for person in saved_identities:
+                    try:
+                        saved_vector = np.array(person.feature_vector.split(','), dtype=float)
+                        dist = np.linalg.norm(live_vector - saved_vector)
+                        if dist < min_dist:
+                            min_dist = dist
+                            identity_name = f"MATCH: {person.name}"
+                    except Exception as e:
+                        continue
+
             gender_name = obj['prediction_name'] 
             score = round(obj['score'] * 100, 2) 
             
-            # Save technical assets for the dashboard
-            gray_image_name = f'roi_{i}.jpg'
-            eig_image_name = f'eigen_{i}.jpg'
-            matimg.imsave(f'./static/predict/{gray_image_name}', gray_image, cmap='gray')
-            matimg.imsave(f'./static/predict/{eig_image_name}', eigen_image, cmap='gray')
+            gray_name = f'roi_{i}.jpg'
+            eig_name = f'eigen_{i}.jpg'
+            matimg.imsave(f'./static/predict/{gray_name}', obj['roi'], cmap='gray')
+            matimg.imsave(f'./static/predict/{eig_name}', obj['eig_img'].reshape(100, 100), cmap='gray')
             
-            report.append([gray_image_name, eig_image_name, gender_name, score])
+            display_name = identity_name if current_user.is_premium and identity_name != "Unrecognized" else gender_name
+            report.append([gray_name, eig_name, display_name, score])
             
         return render_template('gender.html', fileupload=True, report=report)
     

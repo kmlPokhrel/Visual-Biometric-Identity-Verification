@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block bodyblock %}
+<div class="max-w-xl mx-auto animate-in zoom-in-95 duration-500">
+    <div class="glass p-10 rounded-2xl border-t-2 border-fuchsia-500 shadow-2xl">
+        
+        <div class="mb-8">
+            <h2 class="font-orbitron text-fuchsia-400 text-xl font-bold uppercase tracking-widest">
+                Biometric Enrollment
+            </h2>
+            <p class="text-[10px] text-slate-500 font-mono mt-1 uppercase tracking-tighter">
+                Targeting system: SECURE_VAULT_v4 // PERSISTENCE_LAYER_ACTIVE
+            </p>
+        </div>
+
+        <form method="POST" enctype="multipart/form-data" class="space-y-6">
+            <div>
+                <label class="block font-orbitron text-[10px] text-slate-400 uppercase mb-2 tracking-widest">
+                    Subject Identity Name
+                </label>
+                <input type="text" name="name" 
+                       class="w-full bg-slate-900/50 border border-slate-700 rounded-sm p-3 text-cyan-400 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/50 outline-none transition-all placeholder:text-slate-700" 
+                       placeholder="e.g. ANSHUL CHAUDHARY" required>
+            </div>
+            
+            <div>
+                <label class="block font-orbitron text-[10px] text-slate-400 uppercase mb-2 tracking-widest">
+                    Reference Scan Image
+                </label>
+                <div class="relative group">
+                    <input type="file" name="image" accept="image/*" 
+                           class="w-full text-xs text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-sm file:border-0 file:text-[10px] file:font-orbitron file:bg-cyan-500/10 file:text-cyan-400 hover:file:bg-cyan-500/20 cursor-pointer border border-slate-700 p-2 rounded-sm" 
+                           required>
+                </div>
+                <p class="text-[9px] text-slate-600 mt-2 uppercase italic">* Ensure face is centered and clearly visible for PCA mapping.</p>
+            </div>
+
+            <button type="submit" onclick="showLoading()" 
+                    class="w-full py-4 bg-transparent border border-fuchsia-500 text-fuchsia-500 font-orbitron text-xs tracking-[0.3em] hover:bg-fuchsia-500 hover:text-white transition-all shadow-[0_0_15px_rgba(217,70,239,0.2)] hover:shadow-[0_0_25px_rgba(217,70,239,0.4)] uppercase mt-4">
+                Inject Into Neural Database
+            </button>
+        </form>
+        
+        <div class="mt-8 pt-6 border-t border-slate-800 text-center">
+            <a href="/dashboard" class="text-[10px] font-orbitron text-slate-500 hover:text-cyan-400 transition-colors uppercase tracking-widest">
+                << Terminate Process & Return
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+static/upload/*
+static/predict/*
+static/reports/*
+app/__pycache__/
+instance/
+__pycache__/
+database.db
+*.pyc
+.env
+static/upload/*
+...

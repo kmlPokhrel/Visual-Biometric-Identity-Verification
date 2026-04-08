@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block bodyblock %}
+<div class="space-y-8 animate-in fade-in duration-700">
+    
+    <div class="glass p-8 rounded-xl border-l-4 border-cyan-500">
+        <h1 class="font-orbitron text-2xl font-bold tracking-tighter uppercase">
+            Neural Engine <span class="text-fuchsia-500">v1.0.4</span> - Command Center
+        </h1>
+        <p class="text-slate-400 mt-2 font-mono text-sm uppercase">
+            Operator: <span class="text-cyan-400">{{ current_user.username }}</span> | 
+            Status: 
+            {% if current_user.is_premium %}
+                <span class="text-fuchsia-400 font-bold neon-glow-text">PREMIUM ACCESS GRANTED</span>
+            {% else %}
+                <span class="text-cyan-400 font-bold">AUTHORIZED (STANDARD)</span>
+            {% endif %}
+        </p>
+    </div>
+
+    <div class="glass p-8 rounded-xl relative overflow-hidden">
+        <div class="absolute top-0 right-0 p-4 font-orbitron text-[10px] opacity-20 uppercase">Module: ID_SEC_ACCESS</div>
+        <h3 class="font-orbitron text-cyan-400 text-lg mb-4 uppercase">Identity Access Status</h3>
+        
+        {% if current_user.is_premium %}
+            <div class="flex items-center space-x-3 text-fuchsia-400">
+                <span class="relative flex h-3 w-3">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-fuchsia-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-fuchsia-500"></span>
+                </span>
+                <p class="font-orbitron text-sm tracking-widest uppercase">Elite Mode Active: Biometric Verification Enabled</p>
+            </div>
+        {% else %}
+            <p class="text-slate-500 italic mb-6">🔒 Standard Mode: Individual identity matching is currently restricted.</p>
+            <form action="/create-checkout-session" method="POST">
+                <button type="submit" class="px-6 py-3 bg-fuchsia-600 hover:bg-fuchsia-500 text-white font-orbitron text-[10px] tracking-widest rounded-sm transition-all shadow-[0_0_15px_rgba(217,70,239,0.4)] uppercase">
+                    Upgrade to Elite via Stripe
+                </button>
+            </form>
+        {% endif %}
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+        <div class="glass p-6 rounded-xl border-t border-cyan-500/30">
+            <h4 class="font-orbitron text-[10px] text-slate-500 mb-4 uppercase">Recognition Engine</h4>
+            <div class="flex flex-col space-y-3">
+                <a href="{{ url_for('views.genderapp') }}" class="w-full py-3 border border-cyan-500/50 text-cyan-400 text-center font-orbitron text-[10px] tracking-[0.2em] hover:bg-cyan-500/10 transition uppercase">
+                    Launch Biometric Scanner
+                </a>
+                <a href="/analytics" class="w-full py-3 border border-slate-700 text-slate-400 text-center font-orbitron text-[10px] tracking-[0.2em] hover:border-cyan-500/50 hover:text-cyan-400 transition uppercase">
+                    Forensic Analytics Hub
+                </a>
+            </div>
+        </div>
+
+        <div class="glass p-6 rounded-xl border-t border-fuchsia-500/30">
+            <h4 class="font-orbitron text-[10px] text-slate-500 mb-4 uppercase">Database Management</h4>
+            {% if current_user.is_premium %}
+                <a href="/enroll" class="w-full py-3 border border-fuchsia-500/50 text-fuchsia-400 text-center font-orbitron text-[10px] tracking-[0.2em] hover:bg-fuchsia-500/10 transition uppercase block">
+                    Enroll New Identity
+                </a>
+            {% else %}
+                <div class="w-full py-3 border border-slate-800 text-slate-600 text-center font-orbitron text-[10px] tracking-[0.2em] cursor-not-allowed uppercase">
+                    Enrollment Locked 🔒
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="pt-10 border-t border-slate-800 flex justify-center">
+        <a href="/logout" class="text-[10px] font-orbitron text-slate-600 hover:text-red-500 transition-colors tracking-widest uppercase">
+            [ Terminate Session ]
+        </a>
+    </div>
+</div>
+{% endblock %}
